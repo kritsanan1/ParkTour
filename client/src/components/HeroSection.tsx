@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImagePath from "@assets/wang-yai-park-hero_1754404819577.jpg";
+import Image from "@/components/Image";
 
 export default function HeroSection() {
   const handleExploreAttractions = () => {
@@ -13,12 +13,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-96 md:h-[500px] overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${heroImagePath}')`
-        }}
-      />
+      <Image className="absolute inset-0">
+        <div className="absolute inset-0 bg-black/40" />
+      </Image>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="text-white max-w-2xl">
