@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(25, 95%, 53%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Thai tourism theme colors */
+  --crocodile-50: hsl(30, 100%, 97%);
+  --crocodile-100: hsl(30, 100%, 90%);
+  --crocodile-200: hsl(30, 100%, 80%);
+  --crocodile-300: hsl(30, 100%, 70%);
+  --crocodile-400: hsl(30, 100%, 60%);
+  --crocodile-500: hsl(25, 95%, 53%);
+  --crocodile-600: hsl(22, 100%, 52%);
+  --crocodile-700: hsl(18, 100%, 45%);
+  --crocodile-800: hsl(17, 88%, 36%);
+  --crocodile-900: hsl(15, 79%, 27%);
+  
+  --thai-slate-50: hsl(210, 20%, 98%);
+  --thai-slate-100: hsl(220, 14%, 96%);
+  --thai-slate-200: hsl(220, 13%, 91%);
+  --thai-slate-300: hsl(216, 12%, 84%);
+  --thai-slate-400: hsl(218, 11%, 65%);
+  --thai-slate-500: hsl(220, 9%, 46%);
+  --thai-slate-600: hsl(215, 14%, 34%);
+  --thai-slate-700: hsl(217, 19%, 27%);
+  --thai-slate-800: hsl(215, 28%, 17%);
+  --thai-slate-900: hsl(221, 39%, 11%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(25, 95%, 53%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+  }
+  
+  .font-kanit {
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .crocodile-50 { @apply bg-[color:var(--crocodile-50)]; }
+  .crocodile-100 { @apply bg-[color:var(--crocodile-100)]; }
+  .crocodile-200 { @apply bg-[color:var(--crocodile-200)]; }
+  .crocodile-300 { @apply bg-[color:var(--crocodile-300)]; }
+  .crocodile-400 { @apply bg-[color:var(--crocodile-400)]; }
+  .crocodile-500 { @apply bg-[color:var(--crocodile-500)]; }
+  .crocodile-600 { @apply bg-[color:var(--crocodile-600)]; }
+  .crocodile-700 { @apply bg-[color:var(--crocodile-700)]; }
+  .crocodile-800 { @apply bg-[color:var(--crocodile-800)]; }
+  .crocodile-900 { @apply bg-[color:var(--crocodile-900)]; }
+  
+  .text-crocodile-50 { color: var(--crocodile-50); }
+  .text-crocodile-100 { color: var(--crocodile-100); }
+  .text-crocodile-200 { color: var(--crocodile-200); }
+  .text-crocodile-300 { color: var(--crocodile-300); }
+  .text-crocodile-400 { color: var(--crocodile-400); }
+  .text-crocodile-500 { color: var(--crocodile-500); }
+  .text-crocodile-600 { color: var(--crocodile-600); }
+  .text-crocodile-700 { color: var(--crocodile-700); }
+  .text-crocodile-800 { color: var(--crocodile-800); }
+  .text-crocodile-900 { color: var(--crocodile-900); }
+  
+  .border-crocodile-500 { border-color: var(--crocodile-500); }
+  .border-crocodile-600 { border-color: var(--crocodile-600); }
+  
+  .thai-slate-50 { @apply bg-[color:var(--thai-slate-50)]; }
+  .thai-slate-100 { @apply bg-[color:var(--thai-slate-100)]; }
+  .thai-slate-200 { @apply bg-[color:var(--thai-slate-200)]; }
+  .thai-slate-300 { @apply bg-[color:var(--thai-slate-300)]; }
+  .thai-slate-400 { @apply bg-[color:var(--thai-slate-400)]; }
+  .thai-slate-500 { @apply bg-[color:var(--thai-slate-500)]; }
+  .thai-slate-600 { @apply bg-[color:var(--thai-slate-600)]; }
+  .thai-slate-700 { @apply bg-[color:var(--thai-slate-700)]; }
+  .thai-slate-800 { @apply bg-[color:var(--thai-slate-800)]; }
+  .thai-slate-900 { @apply bg-[color:var(--thai-slate-900)]; }
+  
+  .text-thai-slate-50 { color: var(--thai-slate-50); }
+  .text-thai-slate-100 { color: var(--thai-slate-100); }
+  .text-thai-slate-200 { color: var(--thai-slate-200); }
+  .text-thai-slate-300 { color: var(--thai-slate-300); }
+  .text-thai-slate-400 { color: var(--thai-slate-400); }
+  .text-thai-slate-500 { color: var(--thai-slate-500); }
+  .text-thai-slate-600 { color: var(--thai-slate-600); }
+  .text-thai-slate-700 { color: var(--thai-slate-700); }
+  .text-thai-slate-800 { color: var(--thai-slate-800); }
+  .text-thai-slate-900 { color: var(--thai-slate-900); }
+}
+
+/* Scrollbar hiding */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
