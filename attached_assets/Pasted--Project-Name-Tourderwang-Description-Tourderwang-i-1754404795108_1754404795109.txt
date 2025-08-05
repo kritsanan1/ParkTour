@@ -1,0 +1,81 @@
+# Project Name: ที่นี่ วังสามหมอ - Tourderwang
+
+## Description
+"ที่นี่ วังสามหมอ - Tourderwang" is a local website aimed at promoting tourism in Wang Sam Mo District, Udon Thani, Thailand. The platform provides detailed information on local attractions, job opportunities, restaurants, accommodations, homestays, and services, serving as a comprehensive guide for tourists and locals. It offers a freemium advertising model for local businesses to promote their services, including enhanced social media marketing. Enhancements include integrating Stripe for payment processing to manage premium feature subscriptions and one-time payments for highlighted listings and virtual tours, ensuring secure and efficient transactions.
+
+## Primary Goals
+- Promote tourism and local businesses in Wang Sam Mo District.
+- Provide a comprehensive guide with AI-driven personalized recommendations for tourists.
+- Offer advanced analytics for businesses to optimize their engagement and performance.
+- Integrate real-time event updates and virtual tours for a rich user experience.
+- Streamline payment processes for premium features through Stripe integration.
+
+----------------------------------------------------
+
+## Tech Stack & Environment
+
+**Frontend:** Vite + React + TypeScript + Tailwind CSS
+
+**Backend:** Supabase (PostgreSQL + Auth)
+
+**Target Platform:** Single-Page Application
+
+**Framework Versions & Config:** Latest stable versions
+
+----------------------------------------------------
+
+## Requirements & Features
+
+### Core Features:
+
+- Listings of local attractions, restaurants, accommodations, and services with detailed information, reviews, and AI-driven personalized recommendations.
+
+- A platform for local businesses to create and manage their listings and promotions, with advanced social media integration and analytics dashboard.
+
+- Payment processing for premium features using Stripe, including subscriptions and one-time payments.
+
+### User Flows
+- Visitors can browse categories such as attractions, restaurants, and accommodations to find detailed information, reviews, and receive personalized recommendations.
+- Local businesses can sign up, create a profile, manage listings, access advanced analytics, utilize social media integration for automated posting and tracking, and manage payments for premium services via Stripe.
+
+### Business Rules
+- Basic listings are free for all local businesses.
+- Premium features, such as highlighted listings, virtual tours, and enhanced social media packages, are available for a fee, processed securely through Stripe.
+
+----------------------------------------------------
+
+## UI/UX Design
+
+### Layout
+- Responsive design to ensure optimal viewing on both desktop and mobile devices.
+- Simplified navigation with enhanced search and filter options for personalized experiences.
+
+### Look & Feel
+- Modern and clean aesthetic with a focus on visual content including virtual tours to highlight local attractions and businesses.
+- Consistent use of color schemes that reflect the local culture and environment.
+
+### Pages
+- Home Page showcasing featured attractions, businesses, and personalized recommendations.
+- Listings Page for each category (e.g., Attractions, Restaurants).
+- Business Profile Page for managing listings, promotions, analytics, and payment settings.
+
+### Components
+- Advanced Search Bar with filtering capabilities for personalized content.
+- Review, Rating, and Recommendation System for attractions and services.
+- Virtual Tour Viewer for 360-degree images and videos.
+- Analytics Dashboard for businesses.
+- Payment Gateway Interface for managing Stripe transactions.
+
+----------------------------------------------------
+
+## Data Model & Supabase Setup
+
+### Database Schema
+- Tables for users, businesses, listings, reviews, recommendations, virtual tours, advertisements, and payment transactions with relationships defined to associate reviews and advertisements with specific business listings.
+
+### Row-Level Security
+Enabled by default
+
+### Auth Requirements
+- User authentication for business account management, premium feature access, and personalized content interaction.
+- Secure handling of payment information through Stripe's API.
