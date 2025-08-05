@@ -111,7 +111,7 @@ export default function PricingSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {pricingPlans.map((plan, index) => {
             const IconComponent = plan.icon;
             return (
@@ -122,26 +122,26 @@ export default function PricingSection() {
                   </Badge>
                 )}
                 
-                <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <IconComponent className="w-8 h-8 text-orange-600" />
+                <CardHeader className="text-center pb-3 sm:pb-4 p-4 sm:p-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-white rounded-full flex items-center justify-center shadow-md">
+                    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
                   </div>
-                  <CardTitle className="text-2xl font-bold font-kanit">
+                  <CardTitle className="text-xl sm:text-2xl font-bold font-kanit">
                     {plan.name}
-                    <span className="block text-lg font-normal text-gray-600 mt-1">
+                    <span className="block text-base sm:text-lg font-normal text-gray-600 mt-1">
                       {plan.nameEn}
                     </span>
                   </CardTitle>
                   <CardDescription className="text-center">
-                    <div className="text-3xl font-bold text-gray-900 font-kanit">
+                    <div className="text-2xl sm:text-3xl font-bold text-gray-900 font-kanit">
                       ฿{plan.price}
-                      <span className="text-lg font-normal text-gray-600">/{plan.period}</span>
+                      <span className="text-base sm:text-lg font-normal text-gray-600">/{plan.period}</span>
                     </div>
-                    <div className="text-sm text-gray-500 mt-1">
+                    <div className="text-xs sm:text-sm text-gray-500 mt-1">
                       per {plan.periodEn}
                     </div>
                   </CardDescription>
-                  <p className="text-sm text-gray-600 mt-2">
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2">
                     {plan.description}
                     <span className="block text-xs text-gray-500 mt-1">
                       {plan.descriptionEn}
@@ -149,14 +149,14 @@ export default function PricingSection() {
                   </p>
                 </CardHeader>
 
-                <CardContent className="pb-4">
-                  <ul className="space-y-3">
+                <CardContent className="pb-3 sm:pb-4 px-4 sm:px-6">
+                  <ul className="space-y-2 sm:space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
                         <div>
-                          <span className="text-gray-700 font-kanit">{feature}</span>
-                          <div className="text-xs text-gray-500 mt-1">
+                          <span className="text-xs sm:text-sm text-gray-700 font-kanit leading-relaxed">{feature}</span>
+                          <div className="text-xs text-gray-500 mt-0.5 sm:mt-1">
                             {plan.featuresEn[featureIndex]}
                           </div>
                         </div>
@@ -165,17 +165,19 @@ export default function PricingSection() {
                   </ul>
                 </CardContent>
 
-                <CardFooter className="pt-4">
+                <CardFooter className="pt-3 sm:pt-4 px-4 sm:px-6">
                   <Button 
                     onClick={() => handleSelectPlan(plan.name, plan.price)}
                     className={`w-full ${plan.popular 
                       ? 'bg-orange-600 hover:bg-orange-700 text-white' 
                       : 'bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-50'
-                    } font-kanit text-lg py-6`}
+                    } font-kanit text-sm sm:text-base lg:text-lg py-3 sm:py-4 lg:py-6 min-h-[44px] touch-manipulation`}
                   >
-                    เลือกแพ็คเกจนี้
-                    <span className="block text-sm opacity-75">
-                      Select This Plan
+                    <span className="flex flex-col items-center">
+                      <span>เลือกแพ็คเกจนี้</span>
+                      <span className="text-xs sm:text-sm opacity-75 mt-0.5">
+                        Select This Plan
+                      </span>
                     </span>
                   </Button>
                 </CardFooter>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap');
+/* Font loading optimized - moved to HTML for better performance */
 
 @tailwind base;
 @tailwind components;
@@ -48,6 +48,76 @@
   --thai-slate-700: hsl(217, 19%, 27%);
   --thai-slate-800: hsl(215, 28%, 17%);
   --thai-slate-900: hsl(221, 39%, 11%);
+}
+
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography optimizations for mobile */
+.font-kanit {
+  font-display: swap;
+}
+
+.font-inter {
+  font-display: swap;
+}
+
+/* Touch target improvements */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Image loading optimization */
+img {
+  loading: lazy;
+  decoding: async;
+}
+
+/* Hero image should load immediately */
+.hero-image {
+  loading: eager;
+  decoding: async;
+  fetchpriority: high;
+}
+
+/* Responsive text utilities */
+@media (max-width: 640px) {
+  .text-responsive-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .text-responsive-base {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+}
+
+/* Prevent layout shift */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+.aspect-ratio-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dark {

@@ -12,28 +12,32 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-96 md:h-[500px] overflow-hidden">
-      <Image className="absolute inset-0">
+    <section className="relative h-[60vh] min-h-[400px] max-h-[600px] sm:h-[70vh] md:h-[500px] overflow-hidden">
+      <Image 
+        className="absolute inset-0" 
+        priority={true}
+        alt="Wang Yai Park Hero - Discover the wonders of Wang Sam Mo District, Udon Thani - สวนวังใหญ่ ค้นพบความมหัศจรรย์ของอำเภอวังสามหมอ อุดรธานี"
+      >
         <div className="absolute inset-0 bg-black/40" />
       </Image>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-        <div className="text-white max-w-2xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 font-kanit">
+        <div className="text-white max-w-2xl w-full">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 sm:mb-4 font-kanit leading-tight">
             ยินดีต้อนรับสู่<br />
             <span className="text-crocodile-400">วังสามหมอ</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-6 font-kanit font-light">
+          <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 font-kanit font-light">
             Welcome to Wang Sam Mo
           </p>
-          <p className="text-lg mb-8 text-gray-200 max-w-lg">
+          <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 text-gray-200 max-w-lg leading-relaxed">
             ดินแดนมหัศจรรย์แห่งจระเข้ยักษ์ สวนสนและวัฒนธรรมท้องถิ่น 
             ค้นพบความงามและเสน่ห์ของอุดรธานี
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button 
               onClick={handleExploreAttractions}
-              className="crocodile-500 text-white hover:bg-crocodile-600"
+              className="crocodile-500 text-white hover:bg-crocodile-600 h-12 sm:h-auto text-sm sm:text-base px-6 sm:px-4"
               size="lg"
             >
               <i className="fas fa-compass mr-2"></i>
@@ -43,7 +47,7 @@ export default function HeroSection() {
               onClick={handleViewVirtualTour}
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-thai-slate-800"
+              className="border-2 border-white text-white hover:bg-white hover:text-thai-slate-800 h-12 sm:h-auto text-sm sm:text-base px-6 sm:px-4"
             >
               <i className="fas fa-vr-cardboard mr-2"></i>
               ทัวร์เสมือนจริง
