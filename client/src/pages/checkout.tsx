@@ -65,6 +65,30 @@ const CheckoutForm = ({ feature, amount }: { feature: string; amount: string }) 
 
   const getFeatureDetails = (feature: string) => {
     switch (feature) {
+      case 'เบสิค':
+      case 'Basic':
+        return {
+          name: 'แพ็คเกจเบสิค / Basic Package',
+          description: 'เหมาะสำหรับธุรกิจเริ่มต้น รายการธุรกิจพื้นฐานพร้อมฟีเจอร์หลัก',
+          descriptionEn: 'Perfect for starting businesses with essential features',
+          icon: 'fas fa-star',
+        };
+      case 'โปร':
+      case 'Pro':
+        return {
+          name: 'แพ็คเกจโปร / Pro Package',
+          description: 'สำหรับธุรกิจที่ต้องการเติบโต พร้อมฟีเจอร์ครบครันและการตลาด',
+          descriptionEn: 'For growing businesses with complete features and marketing tools',
+          icon: 'fas fa-rocket',
+        };
+      case 'พรีเมี่ยม':
+      case 'Premium':
+        return {
+          name: 'แพ็คเกจพรีเมี่ยม / Premium Package',
+          description: 'สำหรับธุรกิจขนาดใหญ่ ฟีเจอร์ครบครันและบริการระดับพรีเมี่ยม',
+          descriptionEn: 'For large enterprises with premium features and services',
+          icon: 'fas fa-crown',
+        };
       case 'highlighted':
         return {
           name: 'รายการเด่น / Highlighted Listing',
@@ -227,24 +251,41 @@ export default function Checkout() {
   const [amount, setAmount] = useState("0");
 
   useEffect(() => {
-    // Get client secret and feature from URL parameters
+    // Get parameters from URL
     const urlParams = new URLSearchParams(window.location.search);
     const clientSecretParam = urlParams.get('client_secret');
-    const featureParam = urlParams.get('feature') || 'premium';
+    const planParam = urlParams.get('plan');
+    const priceParam = urlParams.get('price');
+    const featureParam = urlParams.get('feature');
     
     if (clientSecretParam) {
       setClientSecret(clientSecretParam);
-      setFeature(featureParam);
-      
-      // Set amount based on feature
-      const featureAmounts: Record<string, string> = {
-        'highlighted': '299',
-        'virtual-tour': '499',
-        'premium_features': '299',
+      setFeature(planParam || featureParam || 'premium');
+      setAmount(priceParam?.replace(',', '') || '299');
+    } else if (planParam && priceParam) {
+      // Create payment intent for pricing packages
+      const planData = {
+        plan: planParam,
+        amount: parseInt(priceParam.replace(',', ''))
       };
-      setAmount(featureAmounts[featureParam] || '299');
+      
+      fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(planData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setClientSecret(data.clientSecret);
+          setFeature(planParam);
+          setAmount(priceParam.replace(',', ''));
+        })
+        .catch((error) => {
+          console.error("Error creating payment intent:", error);
+          window.location.href = '/business-dashboard';
+        });
     } else {
-      // Redirect to business dashboard if no client secret
+      // Redirect to business dashboard if no valid parameters
       window.location.href = '/business-dashboard';
     }
   }, []);

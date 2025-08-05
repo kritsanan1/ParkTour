@@ -165,16 +165,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe payment routes
   app.post("/api/create-payment-intent", isAuthenticated, async (req: any, res) => {
     try {
-      const { amount, feature, businessId } = req.body;
+      const { amount, feature, businessId, plan } = req.body;
       const userId = req.user.claims.sub;
       
+      // Handle pricing packages
+      let finalAmount = amount;
+      if (plan) {
+        const pricingMap: { [key: string]: number } = {
+          'เบสิค': 1500,
+          'Basic': 1500,
+          'โปร': 3000,
+          'Pro': 3000,
+          'พรีเมี่ยม': 5000,
+          'Premium': 5000
+        };
+        finalAmount = pricingMap[plan] || amount;
+      }
+      
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Convert to satang (Thai cents)
+        amount: Math.round(finalAmount * 100), // Convert to satang (Thai cents)
         currency: "thb",
         metadata: {
           userId,
-          feature,
+          feature: feature || plan || "package",
           businessId: businessId || "",
+          plan: plan || "",
         },
       });
 
@@ -183,11 +198,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         userId,
         businessId: businessId || null,
         stripePaymentIntentId: paymentIntent.id,
-        amount: amount.toString(),
+        amount: finalAmount.toString(),
         currency: "thb",
         status: "pending",
-        type: "one_time",
-        feature,
+        type: plan ? "subscription" : "one_time",
+        feature: feature || plan || "package",
       });
 
       res.json({ clientSecret: paymentIntent.client_secret });
@@ -204,10 +219,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const userId = user.claims.sub;
 
       if (user.stripeSubscriptionId) {
-        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
+        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId, {
+          expand: ['latest_invoice.payment_intent']
+        });
+        const latestInvoice = subscription.latest_invoice as any;
         res.json({
           subscriptionId: subscription.id,
-          clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+          clientSecret: latestInvoice?.payment_intent?.client_secret,
         });
         return;
       }
@@ -246,9 +264,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         feature: "premium_features",
       });
 
+      const latestInvoice = subscription.latest_invoice as any;
       res.json({
         subscriptionId: subscription.id,
-        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+        clientSecret: latestInvoice?.payment_intent?.client_secret,
       });
     } catch (error: any) {
       console.error("Error creating subscription:", error);
